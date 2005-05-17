@@ -24,7 +24,7 @@ db_multirow -extend {edit edit_url clip clip_url count one_file_url main_file} f
     set clip_url [export_vars -base "/clipboard/attach" {{object_id $file_id} clipboard_id}]
     set file_item_id [db_string get_file_item_id { } -default 0]
     set count [db_string get_revision_count { } -default 0]
-    set one_file_url [export_vars -base one-file {file_id res_id}]
+    set one_file_url [export_vars -base one-file {file_id res_id ims_item_id}]
     if {$main_file_p} {
 	set main_file "Main File"
     } else {

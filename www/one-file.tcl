@@ -10,6 +10,7 @@ ad_page_contract {
     {res_id ""}
     {name "" }
     {prev_file_id ""}
+    ims_item_id:notnull
 }
 
 # Checking swa privilege over lors-central
@@ -95,5 +96,5 @@ db_multirow courses get_course_info { } {
 }
 
 set return_url [ad_return_url]
-set edit_url [export_vars -base "file-content-edit" {file_id return_url res_id man_id}]
+set edit_url [export_vars -base "file-content-edit" {ims_item_id file_id return_url res_id man_id}]
 ad_return_template
