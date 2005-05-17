@@ -1,0 +1,102 @@
+ad_page_contract {
+    @author Miguel Marin (miguelmarin@viaro.net)
+    @author Viaro Networks www.viaro.net
+    @creation date 06-05-2005
+
+    Get the right file to display in preview pages, expect ims_item_id 
+    from nsv variables
+} {
+
+}
+
+# We get the url of the image or link
+set the_url [ad_conn path_info]
+
+# We get the ims_item_id of nsv variable
+set ims_item_id [lindex [nsv_get delivery_vars [ad_conn session_id]] 0]
+
+# We need the man_id of the ims_item_id to get the folder that holds the content
+set res_id [lors_central::get_ims_item_id_or_res_id -ims_item_id $ims_item_id]
+set man_id [db_string get_man_id { select man_id from ims_cp_resources where res_id = :res_id }]
+set root_folder [lors_central::get_root_folder_id]
+set name [lors_central::get_course_name -man_id $man_id]
+
+set folder [db_string get_folder { 
+       select
+              item_id
+       from
+              cr_items
+       where
+              name = :name and
+              parent_id = :root_folder
+
+	}]
+
+# Now that we have the folder we get the href of that the ims_item_id has associated to move to the right folder
+set href [lors_central::get_href -ims_item_id $ims_item_id]
+
+set path_list [split $href "/"]
+    set char [string range $href 0 0]
+    if { [string equal $char "/"] } {
+        set subfolder_name [lindex $path_list 1]
+        set url_name [lindex $path_list 2]
+    } else {
+        set subfolder_name [lindex $path_list 0]
+        set url_name [lindex $path_list 1]
+    }
+
+# Get the folder_id from the href and figure it out if we have to move another
+# folder down
+if { ![empty_string_p $subfolder_name] } {
+	set folder_id [db_string get_folder_id { 
+	select 
+	        item_id 
+	from 
+	        cr_items 
+	where 
+	        name = :subfolder_name and 
+	        parent_id = :folder
+	}]
+} else {
+	set folder_id $folder
+}	
+
+# Now that we have the folder we check out the url to see if we have to go
+# down again
+
+set split_url [split $the_url "/"]
+
+set list_length [llength $split_url]
+set file_name [lindex $split_url [expr $list_length - 1]]
+set folder_list [lrange $split_url 0 [expr $list_length - 2]]
+
+# Moving down folder by folder to get the last folder_id
+foreach folder_name $folder_list {
+     set folder_id [db_string get_folder_id { 
+	select 
+	       item_id 
+	from 
+ 	       cr_items 
+	where 
+               name = :folder_name and 
+	       parent_id = :folder_id
+	}]
+}	
+
+# Get the item_id of the file to show
+set item_id [db_string get_item_id { 
+	select 
+	       item_id 
+	from 
+               cr_items 
+        where 
+               parent_id = :folder_id and 
+               name = :file_name 
+	}]
+
+# Get the live revision
+set revision_id [item::get_live_revision $item_id]
+
+# Show the content
+cr_write_content -revision_id $revision_id
+

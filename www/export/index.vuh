@@ -1,0 +1,15 @@
+# packages/lors-central/www/export/index.vuh
+
+ad_page_contract {
+    Just to get the propper file name to return to the user
+    from the server
+	
+    @author Miguel Marin (miguelmarin@viaro.net)
+    @author Viaro Networks www.viaro.net 	
+}
+
+
+set download_name [ad_conn path_info]
+
+ns_returnfile 200 application/octet-stream "/$download_name"
+
