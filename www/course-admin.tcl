@@ -8,7 +8,7 @@ ad_page_contract {
 }
 
 # Checking swa privilege over lors-central
-lors_central::is_swa
+lors_central::check_permissions
 
 
 set title "[_ lorsm.lt_Manage_Courses_in_Rep]"

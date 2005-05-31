@@ -11,7 +11,7 @@
                    dc.pretty_name, 
                    dc.url
 	    from 
-                   dotlrn_class_instances_full dc
+                   dotlrn_class_instances_full dc, dotlrn_instructor_rels_full drf
             where           
                    dc.class_instance_id not in 
                    (
@@ -27,7 +27,10 @@
                           from cr_revisions 
                           where item_id = :item_id
                           )
-                   )
+                   ) and
+		   drf.community_id = dc.class_instance_id and
+		   drf.user_id = :user_id and
+	           drf.role = 'instructor'
 	    order by department_name, term_name, class_name, pretty_name
         </querytext>
     </fullquery>
@@ -42,7 +45,7 @@
                    dc.pretty_name, 
                    dc.url
 	    from 
-                   dotlrn_class_instances_full dc
+                   dotlrn_class_instances_full dc, dotlrn_instructor_rels_full drf
             where           
                    dc.class_instance_id in 
                    (
@@ -57,11 +60,75 @@
                           from cr_revisions 
                           where item_id = :item_id
                           )
-                   )
+                   ) and
+		   drf.community_id = dc.class_instance_id and
+		   drf.user_id = :user_id and
+	           drf.role = 'instructor' 		
 	    order by department_name, 
                      term_name, 
                      class_name, 
                      pretty_name
+        </querytext>
+    </fullquery>
+
+    <fullquery name="get_dotlrn_coms">
+        <querytext>
+            select 
+                   dc.community_id as com_id, 
+                   dc.pretty_name, 
+                   dc.url
+	    from 
+                   dotlrn_communities_full dc, dotlrn_member_rels_full dm
+            where           
+                   dc.community_id not in 
+                   (
+                   select
+                          icmc.community_id 
+                   from
+                          ims_cp_manifest_class icmc
+                   where
+                          icmc.community_id is not null and
+                          man_id in 
+                          (
+                          select revision_id 
+                          from cr_revisions 
+                          where item_id = :item_id
+                          )
+                   ) and
+		   dm.community_id = dc.community_id and
+		   dm.user_id = :user_id and
+	           dm.role = 'admin'
+	    order by pretty_name
+        </querytext>
+    </fullquery>
+
+    <fullquery name="get_dotlrn_coms_drop">
+        <querytext>
+            select 
+                   dc.community_id as com_id, 
+                   dc.pretty_name, 
+                   dc.url
+	    from 
+                   dotlrn_communities_full dc, dotlrn_member_rels_full dm
+            where           
+                   dc.community_id in 
+                   (
+                   select
+                          icmc.community_id 
+                   from
+                          ims_cp_manifest_class icmc
+                   where
+                          man_id in 
+                          (
+                          select revision_id 
+                          from cr_revisions 
+                          where item_id = :item_id
+                          )
+                   ) and
+		   dm.community_id = dc.community_id and
+		   dm.user_id = :user_id and
+	           dm.role = 'admin'
+	    order by pretty_name
         </querytext>
     </fullquery>
 

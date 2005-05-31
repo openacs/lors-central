@@ -6,8 +6,8 @@ ad_page_contract {
    man_id:integer,optional
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set title "[_ lors-central.Classes_using]"
 set context [list [list "one-course-associations?man_id=$man_id" [_ lors-central.one_course_assoc]] \

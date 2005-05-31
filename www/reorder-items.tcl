@@ -7,8 +7,8 @@ ad_page_contract {
    sort_order:notnull
 } 
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set ims_item_id $item_id
 set item_sort [db_string get_item_sort { }]

@@ -5,9 +5,6 @@ ad_page_contract {
    man_id:integer,optional
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
-
 if { ![info exist item_id] && ![info exist man_id] } {
    ad_return_complaint 1 "You must pass either item_id or man_id"
 } else {
@@ -18,6 +15,10 @@ if { ![info exist item_id] && ![info exist man_id] } {
        set item_id [lors_central::get_item_id -revision_id $man_id]
     }
 }
+
+set user_id [ad_conn user_id]
+# Checking privilege over lors-central
+lors_central::check_permissions -object_id $item_id
 
 
 set package_id ""

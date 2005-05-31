@@ -23,8 +23,8 @@ ad_page_contract {
 
 set user_id [ad_conn user_id]
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set folder [db_string select_folder_key {select key from fs_folders where folder_id = :folder_id}]
 set fs_root_folder [db_string sql {select file_storage__get_root_folder(:fs_package_id)}]

@@ -8,6 +8,14 @@ ad_library {
 
 namespace eval lors_central {}
 
+ad_proc -private lors_central::owner {
+    -user_id:required
+    -object_id:required
+} {
+    Returns 1 if user_id is the creator of the object_id, 0 otherwise
+} {
+    return [db_string get_creation_user { } -default 0]
+}
 
 ad_proc -private lors_central::get_ims_item_id_or_res_id {
     {-ims_item_id ""}
@@ -23,13 +31,67 @@ ad_proc -private lors_central::get_ims_item_id_or_res_id {
     } 
 }
 
-ad_proc -private lors_central::is_swa {
+ad_proc -private lors_central::check_permissions {
+    {-object_id ""}
+    {-check_inst ""}
 } {
-    Check if the user (default to logged in user) has site_wide_admin privileges
+    Checks several privileges for user_id, default to logged user over the system.
+
+    @object_id   Send this if you want to check if user_id has permissions over this object_id.
+    @check_inst  Set it to "t" if you want to check if the user_id that watch's this page is an dotlrn
+                 instructor.
 } {
-    if { ![acs_user::site_wide_admin_p] } {
-	ad_returnredirect "not-allowed"
+    if { ![info exist user_id] } {
+	set user_id [ad_conn user_id]
+    }
+    set package_id [ad_conn package_id]
+
+    # Get the number specified in the parameter, this parameter tell if 
+    # only the swa can manage lors-central or any one else
+    set sec_level [parameter::get -parameter "ManageLorsCentralP"]
+
+    if { $sec_level } {
+	if { ![acs_user::site_wide_admin_p] } {
+	    ad_return_complaint 1 "<b>[_ lors-central.we_are_sorry]</b>"
+	    ad_script_abort
+	} else {
+	    return
+	}
+    } else {
+	if { ![empty_string_p $check_inst] } {
+	    if { ![lors_central::check_inst -user_id $user_id] } { 
+		ad_return_complaint 1 "<b>[_ lors-central.we_are_sorry]</b>"
+		ad_script_abort
+	    }
+	} 
+	if { ![empty_string_p $object_id] } {
+	    permission::require_permission -party_id $user_id -object_id $object_id -privilege "admin"
+	}
+    }
+    return
+}
+
+ad_proc -private lors_central::check_inst {
+    -user_id:required
+    {-community_id ""}
+} {
+    Checks if user id has instructor or admin role in @community_id@ or any community_id, returns 1 if it does,
+    0 otherwise
+} {
+    if { [acs_user::site_wide_admin_p] } {
+	return 1
 	ad_script_abort
+    }
+    if { ![empty_string_p $community_id] } {
+	set extra_query "and community_id = $community_id"
+    } else {
+	set extra_query ""
+    }
+    set count [db_string check_inst { } -default 0]
+    if { $count > 0 } {
+	return 1
+    } else {
+	return 0
     }
 }
 
@@ -88,27 +150,33 @@ ad_proc -private lors_central::folder_id_from_man_parent {
 
 
 ad_proc -private lors_central::get_root_folder_id { } {
-    Returns the folder_id of the folder with the name "LORS Root Folder"
+    Returns the folder_id of the folder with the name "LORSM Root Folder"
+} {
+    return [db_string get_folder_id_from_name { } ]
+}
+
+ad_proc -private lors_central::get_root_organizations_folder_id { } {
+    Returns the folder_id of the folder with the name "LORSM Organizations Folder"
 } {
     return [db_string get_folder_id_from_name { } ]
 }
 
 
 ad_proc -private lors_central::get_root_resources_folder_id { } {
-    Returns the folder_id of the folder with the name "LORS Resources Folder"
+    Returns the folder_id of the folder with the name "LORSM Resources Folder"
 } {
     return [db_string get_folder_id_from_name { } ]
 }
 
 ad_proc -private lors_central::get_root_manifest_folder_id { } {
-    Returns the folder_id of the folder with the name "LORS Manifest Folder"
+    Returns the folder_id of the folder with the name "LORSM Manifest Folder"
 } {
     return [db_string get_folder_id_from_name { } ]
 }
 
 
 ad_proc -private lors_central::get_root_items_folder_id { } {
-    Returns the folder_id of the folder with the name "LORS Items Folder"
+    Returns the folder_id of the folder with the name "LORSM Items Folder"
 } {
     return [db_string get_folder_id_from_name { } ]
 }
@@ -267,14 +335,19 @@ ad_proc -private lors_central::get_item_name {
 
 
 ad_proc -private lors_central::relation_between { 
-    -item_id:required
+    {-item_id ""}
     -community_id:required
+    {-man_id ""}
 } {
     Returns the 1 if there is an association between a dotlrn class or community 
-    and the item_id, 0 otherwise.
+    and the item_id, 0 otherwise, you should provide either man_id or item_id
     @man_id@         The manifest id of the course
+    @item_id@        The item_id that has all manifests as revisions
     @community_id@   The class_id or community_id of dotlrn
 } {
+    if { ![empty_string_p $man_id] } {
+	set item_id [lors_central::get_item_id -revision_id $man_id]
+    }
     return [db_string get_relation { } -default 0]
 }
 

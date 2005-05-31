@@ -17,7 +17,7 @@
 
         <provides url="lors-central" version="0.1a3"/>
         <requires url="clipboard" version="0.1d"/>
-        <requires url="lors" version="0.4d"/>
+        <requires url="lors" version="0.6d4"/>
         <requires url="lorsm" version="0.6d2"/>
         <requires url="views" version="0.1d"/>
 
@@ -26,7 +26,8 @@
             <callback type="after-upgrade"  proc="lors_central::apm_callback::after_upgrade"/>
         </callbacks>
         <parameters>
-        <!-- No version parameters -->
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ManageLorsCentralP"  default="0" description="Restricts the users who can acces and modify courses in lors-central package. 1 - Only the swa, 0 - everybody. Defaults to 0"/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="UploadUsingLorsCentralP"  default="0" description="Set to 1 if you want to upload courses using lors-central package instead of lorsm. You will need to have installed  lors-central for this parameter to work."/>
         </parameters>
 
     </version>

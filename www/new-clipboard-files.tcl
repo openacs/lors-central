@@ -12,6 +12,8 @@ ad_page_contract {
 
 set user_id [ad_conn user_id]
 
+lors_central::check_permissions
+
 foreach object $object_id {
     #The same file can not be added to the same res_id twice so we are going to check that
     set ims_res_id [db_string get_res_id { } ]

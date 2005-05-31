@@ -8,8 +8,11 @@ ad_page_contract {
     keyword:optional
 }
 
-# Checking swa privilege over lors-central       
-lors_central::is_swa
+set user_id [ad_conn user_id]
+
+
+# Checking privilege over lors-central       
+lors_central::check_permissions
 
 set title "[_ lorsm.lt_Manage_Courses_in_Rep]"
 set context [list "[_ lorsm.Manage_Courses]"]
@@ -32,6 +35,11 @@ if { [info exist keyword] } {
    set extra_query ""
 }
 
+# If user is not site wide we just show the courses where he/she has admin privilege over
+if { ![acs_user::site_wide_admin_p] } {
+    append extra_query " and p.object_id = acs.object_id and p.privilege = 'admin' and p.grantee_id = :user_id"
+}
+
 set package_id [ad_conn package_id]
 set user_id [ad_conn user_id]
 set community_id [dotlrn_community::get_community_id]
@@ -49,9 +57,10 @@ set admin_p [dotlrn::user_can_admin_community_p  \
 
 set actions [list]
 
-lappend actions  "[_ lorsm.Add_Course]" [export_vars -base "course-add"] "[_ lorsm.lt_Add_a_IMSSCORM_Compli]"
-lappend actions  "[_ lorsm.lt_Search_Learning_Objec]" [export_vars -base "search"] "[_ lorsm.lt_Search_for_Learninng_]"
-
+if { [lors_central::check_inst -user_id $user_id] } {
+    lappend actions  "[_ lorsm.Add_Course]" [export_vars -base "course-add"] "[_ lorsm.lt_Add_a_IMSSCORM_Compli]"
+    lappend actions  "[_ lorsm.lt_Search_Learning_Objec]" [export_vars -base "search"] "[_ lorsm.lt_Search_for_Learninng_]"
+}
 
 template::list::create \
     -name get_courses \

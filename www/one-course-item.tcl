@@ -11,8 +11,8 @@ ad_page_contract {
     {orderby "class,asc"}
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set displayed_object_id $ims_item_id
 

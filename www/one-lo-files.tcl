@@ -9,8 +9,8 @@ ad_page_contract {
     {name ""}
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 if { [empty_string_p $name] } {
     set name [db_string get_name { } -default "..."]

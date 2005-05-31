@@ -2,6 +2,7 @@
   <property name="title">@title@</property>
   <property name="context">@context@</property>
 
+<div align="right"><a href="lc-admin/" title="admin"><img border=0 src="images/admin.gif" alt="admin"></a></div>
 <h2>#lorsm.lt_Courses_in_your_Repos#</h2>
 
 <table width="100%">

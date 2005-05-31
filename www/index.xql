@@ -19,7 +19,7 @@
              acs.creation_user,
              acs.creation_date
       from 
-             cr_revisions cr, acs_objects acs, cr_items ci
+             cr_revisions cr, acs_objects acs, cr_items ci, acs_permissions p
       where 
             acs.object_id = cr.item_id and
 	    ci.item_id = cr.item_id and

@@ -27,12 +27,12 @@ ad_page_contract {
     }
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
-
 #check permission
 set user_id [ad_conn user_id]
-# ad_require_permission $folder_id admin
+
+# Checking privilege over lors-central
+lors_central::check_permissions
+
 
 # Display progress bar
 ad_progress_bar_begin \
@@ -316,6 +316,7 @@ db_transaction {
         ns_write "[_ lorsm.lt_Granting_permissions__1 [list course_name $course_name]]<br>"
 
 	# PERMISSIONS FOR MANIFEST and learning objects
+	permission::grant -party_id $user_id -object_id $man_id -privilege admin
 
 	# set up in the same way as permissions for the file storage
 	# objects. As we want to maintain consistency btw the

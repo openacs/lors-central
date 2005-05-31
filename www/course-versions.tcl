@@ -9,8 +9,8 @@ ad_page_contract {
 
 set user_id [ad_conn user_id]
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 
 if { ![info exist item_id ] } {

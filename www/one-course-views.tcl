@@ -6,8 +6,8 @@ ad_page_contract {
     community_id:integer,notnull
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 # Get the item_id that the manifest_id has associated
 if { ![info exist item_id] } {

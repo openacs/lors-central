@@ -11,8 +11,8 @@ ad_page_contract {
     item_man_id:notnull
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set the_ims_item_id $ims_item_id
 set user_id [ad_conn user_id]

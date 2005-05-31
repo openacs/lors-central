@@ -32,8 +32,8 @@ nsv_set delivery_vars [ad_conn session_id] [list]
 nsv_lappend delivery_vars [ad_conn session_id] $ims_item_id
 
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 # check they have read permission on this file
 

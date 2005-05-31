@@ -11,7 +11,8 @@ ad_page_contract {
 }
 
 
-
+set user_id [ad_conn user_id]
+lors_central::check_permissions
 
 # Get the item_id that the manifest_id has associated
 if { ![info exist item_id] } {

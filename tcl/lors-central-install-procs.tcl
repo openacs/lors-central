@@ -95,3 +95,19 @@ ad_proc -private lors_central::install::package_install {} {
     # Calling apm callback proc for notifications 
     lors_central::apm_callback::package_install
 }
+
+ad_proc -private lors_central::install::package_uninstall {} {
+
+    Uninstall lors-central
+    
+} {
+    set folder_id [lors_central::get_root_folder_id]
+    content::folder::delete -folder_id $folder_id -cascade_p "t"
+    set folder_id [lors_central::get_root_organizations_folder_id]
+    content::folder::delete -folder_id $folder_id -cascade_p "t"
+    set folder_id [lors_central::get_root_resources_folder_id]
+    content::folder::delete -folder_id $folder_id -cascade_p "t"
+    set folder_id [lors_central::get_root_manifest_folder_id]
+    content::folder::delete -folder_id $folder_id -cascade_p "t"
+    set folder_id [lors_central::get_root_items_folder_id]
+}
