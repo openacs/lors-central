@@ -86,5 +86,10 @@ ad_proc -public lors_central::apm_callback::after_upgrade {
 	    0.1a2 0.1a3 {
 		lors_central::apm_callback::package_install
 	    }
+	    0.1a3 0.1a4 {
+		apm_parameter_register "ManageLorsCentralP" "Restricts the users who can acces and modify courses in lors-central package. 1 - Only the swa, 0 - everybody. Defaults to 0" "lors-central" "0" "number"
+		
+		apm_parameter_register "UploadUsingLorsCentralP" "Set to 1 if you want to upload courses using lors-central package instead of lorsm. You will need to have installed  lors-central for this parameter to work." "lors-central" "0" "number"
+	    }
 	}
 }
