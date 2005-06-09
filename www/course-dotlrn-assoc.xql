@@ -27,10 +27,8 @@
                           from cr_revisions 
                           where item_id = :item_id
                           )
-                   ) and
-		   drf.community_id = dc.class_instance_id and
-		   drf.user_id = :user_id and
-	           drf.role = 'instructor'
+                   ) 
+	           $extra_query_class
 	    order by department_name, term_name, class_name, pretty_name
         </querytext>
     </fullquery>
@@ -60,20 +58,16 @@
                           from cr_revisions 
                           where item_id = :item_id
                           )
-                   ) and
-		   drf.community_id = dc.class_instance_id and
-		   drf.user_id = :user_id and
-	           drf.role = 'instructor' 		
-	    order by department_name, 
-                     term_name, 
-                     class_name, 
-                     pretty_name
+                   ) 
+	  	   $extra_query_class
+	    order by department_name, term_name, class_name, pretty_name
         </querytext>
     </fullquery>
 
     <fullquery name="get_dotlrn_coms">
         <querytext>
             select 
+	           distinct
                    dc.community_id as com_id, 
                    dc.pretty_name, 
                    dc.url
@@ -94,17 +88,16 @@
                           from cr_revisions 
                           where item_id = :item_id
                           )
-                   ) and
-		   dm.community_id = dc.community_id and
-		   dm.user_id = :user_id and
-	           dm.role = 'admin'
+                   ) 
+	           and ( dc.community_type = 'dotlrn_club' or  dc.community_type = 'dotlrn_community') 
+                   $extra_query_community
 	    order by pretty_name
         </querytext>
     </fullquery>
 
     <fullquery name="get_dotlrn_coms_drop">
         <querytext>
-            select 
+            select distinct
                    dc.community_id as com_id, 
                    dc.pretty_name, 
                    dc.url
@@ -124,10 +117,9 @@
                           from cr_revisions 
                           where item_id = :item_id
                           )
-                   ) and
-		   dm.community_id = dc.community_id and
-		   dm.user_id = :user_id and
-	           dm.role = 'admin'
+                   )
+	           and ( dc.community_type = 'dotlrn_club' or  dc.community_type = 'dotlrn_community') 
+	           $extra_query_community
 	    order by pretty_name
         </querytext>
     </fullquery>

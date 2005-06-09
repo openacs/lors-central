@@ -25,6 +25,16 @@ if { ![info exist item_id] } {
 
 set user_id [ad_conn user_id]
 
+if { ![acs_user::site_wide_admin_p] } {
+    set extra_query_class "and drf.role = 'instructor' and drf.community_id = dc.class_instance_id and drf.user_id = :user_id "
+    set extra_query_community "and dm.community_id = dc.community_id 
+                               and dm.user_id = :user_id 
+                               and dm.role = 'admin'"
+} else {
+    set extra_query_class ""
+    set extra_query_community ""
+}
+
 
 ##################################### TO ASSOCIATE ##########################################################
 
