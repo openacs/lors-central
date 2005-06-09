@@ -15,6 +15,7 @@
   <msg key="admin">Administrar</msg>  
   <msg key="All_views">Todas las vistas</msg>
   <msg key="All_views_of">Todas las vistas de este objeto</msg>
+  <msg key="and_in_the">y en las siguientes comunidades:</msg>
   <msg key="and_is_in">Y esta siendo utilizado en los siguientes cursos</msg>
   <msg key="assoc">Asociaciones:</msg>
   <msg key="associate">Asociar</msg>

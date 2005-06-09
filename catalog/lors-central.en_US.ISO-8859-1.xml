@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="lors-central" package_version="0.1a3" locale="en_US" charset="ISO-8859-1">
+<message_catalog package_key="lors-central" package_version="0.1a4" locale="en_US" charset="ISO-8859-1">
 
   <msg key="action_not">Action Not Allowed</msg>
   <msg key="add">Add Child</msg>
@@ -16,6 +16,7 @@
   <msg key="admin">Admin</msg>
   <msg key="All_views">All Views</msg>
   <msg key="All_views_of">All Views of this object</msg>
+  <msg key="and_in_the">and in the following Communities:</msg>
   <msg key="and_is_in">And is in use in the following courses</msg>
   <msg key="assoc">Associations:</msg>
   <msg key="associate">Associate</msg>
