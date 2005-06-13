@@ -6,8 +6,8 @@ ad_page_contract {
     folder_id:integer,optional
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 if { ![info exists folder_id] } {
     # Get lorsm root folder_id

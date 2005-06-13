@@ -11,8 +11,8 @@ ad_page_contract {
     {name "" }
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set file_item_id [lors_central::get_item_id -revision_id $file_id]
 

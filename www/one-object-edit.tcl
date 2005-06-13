@@ -15,8 +15,8 @@ ad_page_contract {
     {edit_p ""}
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set parent_item [db_string get_parent_item "select parent_item from ims_cp_items where ims_item_id = :ims_item_id"]
 

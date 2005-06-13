@@ -10,8 +10,8 @@ ad_page_contract {
     objects_value:multiple
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 # object_id:     A list of communities ids
 # object_value:  The version number to set the revision

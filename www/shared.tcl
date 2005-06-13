@@ -10,8 +10,8 @@ ad_page_contract {
     org_id:notnull
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 if { $shared } {
     set isshared f

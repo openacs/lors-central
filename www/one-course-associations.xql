@@ -91,4 +91,34 @@
         </querytext>
     </fullquery>
 
+    <fullquery name="get_dotlrn_communities">
+        <querytext>
+            select 
+	           distinct
+                   dc.community_id as com_id, 
+                   dc.pretty_name, 
+                   dc.url
+	    from 
+                   dotlrn_communities_full dc, dotlrn_member_rels_full dm
+            where           
+                   dc.community_id in 
+                   (
+                   select
+                          icmc.community_id 
+                   from
+                          ims_cp_manifest_class icmc
+                   where
+                          icmc.community_id is not null and
+                          man_id in 
+                          (
+                          select revision_id 
+                          from cr_revisions 
+                          where item_id = :item_id
+                          )
+                   ) 
+	           and ( dc.community_type = 'dotlrn_club' or  dc.community_type = 'dotlrn_community') 
+		   order by pretty_name asc
+        </querytext>
+    </fullquery>
+
 </queryset>

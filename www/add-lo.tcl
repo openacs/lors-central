@@ -13,8 +13,8 @@ ad_page_contract {
 
 set user_id [ad_conn user_id]
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set new_lo_link "man_id=$man_id&org_id=$org_id&parent=$parent_item"
 set page_title [_ lors-central.add_an_existent]

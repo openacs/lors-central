@@ -16,8 +16,8 @@ ad_page_contract {
 } -errors {
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set lorsm_instance_id [db_string get_lorsm_instance_id { 
     select lorsm_instance_id from ims_cp_manifest_class where man_id = :man_id and community_id = :community_id

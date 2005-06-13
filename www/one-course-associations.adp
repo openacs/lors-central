@@ -10,6 +10,10 @@
 
 <listtemplate name="dotlrn_classes"></listtemplate>
 
+<h3>#lors-central.and_in_the#</h3>
+
+<listtemplate name="dotlrn_communities"></listtemplate>
+
 <br>
 <if @man_id@ not nil>
     <a class=button href="course-dotlrn-assoc?man_id=@man_id;noquote@">#lors-central.associate_drop#</a>

@@ -11,7 +11,8 @@ ad_page_contract {
 }
 
 
-
+set user_id [ad_conn user_id]
+lors_central::check_permissions
 
 # Get the item_id that the manifest_id has associated
 if { ![info exist item_id] } {
@@ -200,5 +201,80 @@ db_multirow -extend { ver_num  ver_count manifest_id options tracking } cl_list 
 	}
     }
 }
+
+
+############################################ Communities ###############################################
+
+
+template::list::create \
+    -name dotlrn_communities \
+    -multirow com_list \
+    -key com_id \
+    -has_checkboxes \
+    -bulk_actions { #lors-central.update_versions# "change-one-version" #lors-central.update_course_ver# }\
+    -bulk_action_method post \
+    -bulk_action_export_vars {
+        item_id 
+    } \
+    -row_pretty_plural "[_ lors-central.dotlrn_classes]" \
+    -elements {
+	community  {
+	    label "[_ lors-central.community_name]"
+	    display_template {
+		@com_list.pretty_name@&nbsp;&nbsp;
+                <a href="one-course-views?man_id=@com_list.manifest_id@&community_id=@com_list.com_id@">
+                [_ lors-central.views]
+                </a> 
+	    }
+	}
+	current  {
+	    label "[_ lors-central.current]"
+	    display_template {
+		@com_list.ver_num@ [_ lors-central.of] @com_list.ver_count@
+	    }
+	}
+	set_to  {
+	    label "[_ lors-central.set_to]"
+	    display_template {
+                <input type=hidden name="objects_id" value=@com_list.com_id@>
+                <input type=hidden name="objects_count" value=@com_list.ver_count@>
+                <select name="objects_value">
+  		    @com_list.options;noquote@
+                </select>
+	    }
+	}
+	tracking  {
+	    label "[_ lors-central.tracking]"
+	    display_template {
+                <center>
+		<a href="tracker?man_id=@com_list.manifest_id@&community_id=@com_list.com_id@">
+                <if @com_list.tracking@>
+		[_ lors-central.enabled]
+                </if>
+                <else>
+		[_ lors-central.disabled]
+                </else>
+                </a>
+                </center>
+	    }
+	}
+    } 
+
+db_multirow -extend { ver_num  ver_count manifest_id options tracking } com_list get_dotlrn_communities { } {
+    set manifest_id [lors_central::get_man_id -community_id $com_id -item_id $item_id]
+    set ver_count [lors_central::count_versions -man_id $manifest_id]
+    set ver_num [lors_central::get_version_num -revision_id $manifest_id]
+    set tracking [db_string get_tracking { }]
+    # Create the options for the select menu
+    set options ""
+    for { set i 1 } { $i < [expr $ver_count + 1] } { incr i } {
+	if { [string equal $i $ver_num] } {
+            append options "<option value=$i selected>$i</options>"
+	} else {
+            append options "<option value=$i>$i</options>"
+	}
+    }
+}
+
 
 

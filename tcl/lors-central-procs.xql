@@ -1,6 +1,30 @@
 <?xml version="1.0"?>
 <queryset>
 
+<fullquery name="lors_central::owner.get_creation_user">
+  <querytext>
+       	select
+		1
+       	from
+		acs_objects
+	where
+		creation_user = :user_id and
+	        object_id = :object_id
+  </querytext>
+</fullquery>
+
+<fullquery name="lors_central::check_inst.check_inst">
+  <querytext>
+       	select
+		count(user_id)
+       	from
+		dotlrn_member_rels_full
+	where
+		user_id = :user_id and
+		( role = 'admin' or role = 'instructor' )
+	        $extra_query
+  </querytext>
+</fullquery>
 
 <fullquery name="lors_central::get_ims_item_id_or_res_id.get_res_id">
   <querytext>
@@ -237,6 +261,18 @@
                label = 'LORSM Root Folder'
   </querytext>
 </fullquery>
+
+<fullquery name="lors_central::get_root_organizations_folder_id.get_folder_id_from_name">
+  <querytext>
+        select 
+               folder_id 
+        from 
+               cr_folders
+        where 
+               label = 'LORSM Organizations Folder'
+  </querytext>
+</fullquery>
+
 
 <fullquery name="lors_central::get_root_resources_folder_id.get_folder_id_from_name">
   <querytext>

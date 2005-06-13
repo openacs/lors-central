@@ -8,8 +8,8 @@ ad_page_contract {
     item_id:integer,optional
 }
 
-# Checking swa privilege over lors-central
-lors_central::is_swa
+# Checking privilege over lors-central
+lors_central::check_permissions
 
 set title [_ lors-central.associate_to]
 
@@ -24,6 +24,16 @@ if { ![info exist item_id] } {
 }
 
 set user_id [ad_conn user_id]
+
+if { ![acs_user::site_wide_admin_p] } {
+    set extra_query_class "and drf.role = 'instructor' and drf.community_id = dc.class_instance_id and drf.user_id = :user_id "
+    set extra_query_community "and dm.community_id = dc.community_id 
+                               and dm.user_id = :user_id 
+                               and dm.role = 'admin'"
+} else {
+    set extra_query_class ""
+    set extra_query_community ""
+}
 
 
 ##################################### TO ASSOCIATE ##########################################################
@@ -155,3 +165,98 @@ template::list::create \
 	}
     }
 
+
+##################################### COMMUNITIES ###########################################################
+##################################### TO ASSOCIATE ##########################################################
+
+db_multirow -extend { rel type } coms_list get_dotlrn_coms { } {
+    set rel [lors_central::relation_between -item_id $item_id -community_id $com_id]
+    set type dotlrn_club
+}
+
+template::list::create \
+    -name coms_list \
+    -multirow coms_list \
+    -key community_id \
+    -has_checkboxes\
+    -bulk_actions {
+                   "\#lors-central.associate\#" "course-associate" "\#lors-central.associate_to_class\#" \
+    } \
+    -bulk_action_method post \
+    -bulk_action_export_vars {
+	item_id
+        type
+    }\
+    -row_pretty_plural "[_ lors-central.dotlrn_communities]" \
+    -elements {
+	check_box {
+	    class "list-narrow"
+	    label "<input type=\"checkbox\" name=\"_dummy\" onclick=\"acs_ListCheckAll('coms_list', this.checked)\" \
+                   title=\"\#lors-central.label_title\#\">"
+	    display_template {
+		    <input type="checkbox" name="object_id" value="@coms_list.com_id@" \
+		    id="coms_list,@coms_list.com_id@" \
+		    title="\#lors-central.title\#">
+	    }
+	}
+	class  {
+	    label "[_ lors-central.community_name]"
+	    display_template {
+		<a href="@coms_list.url@">@coms_list.pretty_name@</a> 
+	    }
+	}
+	associate {
+	    display_template {
+		<if @coms_list.rel@ not eq 0>
+		    #lors-central.associated#
+		</if>
+	    }
+	}
+    }
+
+
+############################## TO DROP ASSOCIATION ######################################
+
+db_multirow -extend { rel type } coms_list_drop get_dotlrn_coms_drop { } {
+    set rel [lors_central::relation_between -item_id $item_id -community_id $com_id]
+}
+
+template::list::create \
+    -name coms_list_drop \
+    -multirow coms_list_drop \
+    -key community_id \
+    -has_checkboxes\
+    -bulk_actions {
+                   "\#lors-central.drop\#" "course-association-drop" "\#lors-central.drop_association\#" \
+    } \
+    -bulk_action_method post \
+    -bulk_action_export_vars {
+	item_id
+        type
+    }\
+    -row_pretty_plural "[_ lors-central.dotlrn_classes]" \
+    -elements {
+	check_box {
+	    class "list-narrow"
+	    label "<input type=\"checkbox\" name=\"_dummy\" onclick=\"acs_ListCheckAll('coms_list_drop', this.checked)\" \
+                   title=\"\#lors-central.label_title\#\">"
+	    display_template {
+		    <input type="checkbox" name="object_id" value="@coms_list_drop.com_id@" \
+		    id="coms_list_drop,@coms_list_drop.com_id@" \
+		    title="\#lors-central.title\#">
+	    }
+	}
+	class  {
+	    label "[_ lors-central.community_name]"
+	    display_template {
+		<a href="@coms_list_drop.url@">@coms_list_drop.pretty_name@</a> 
+	    }
+	}
+	associate {
+	    display_template {
+		<if @coms_list_drop.rel@ not eq 0>
+		    #lors-central.associated#
+		</if>
+	    }
+	}
+    }
