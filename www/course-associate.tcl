@@ -41,7 +41,7 @@ foreach community_id $object_id {
 
 
 if { [empty_string_p $return_url] } {
-    ad_progress_bar_end -url "course-dotlrn-assoc?item_id=$item_id"
+    set return_url [export_vars -base one-course-associations {man_id}]
 } else {
     ad_progress_bar_end -url $return_url
 }
