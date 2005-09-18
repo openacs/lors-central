@@ -117,7 +117,7 @@ template::list::create \
 	class  {
 	    label "[_ lors-central.class_name]"
 	    display_template {
-		@cl_list.pretty_name@&nbsp;&nbsp;
+		<a href="@cl_list.course_url@" alt="@cl_list.pretty_name@">@cl_list.pretty_name@</a>&nbsp;&nbsp;
                 <a href="one-course-views?man_id=@cl_list.manifest_id@&community_id=@cl_list.com_id@">
                 [_ lors-central.views]
                 </a> 
@@ -186,7 +186,7 @@ template::list::create \
     
 set orderby_clause [template::list::orderby_clause -orderby -name "dotlrn_classes"]
 
-db_multirow -extend { ver_num  ver_count manifest_id options tracking } cl_list get_dotlrn_classes { } {
+db_multirow -extend { course_url ver_num  ver_count manifest_id options tracking } cl_list get_dotlrn_classes { } {
     set manifest_id [lors_central::get_man_id -community_id $com_id -item_id $item_id]
     set ver_count [lors_central::count_versions -man_id $manifest_id]
     set ver_num [lors_central::get_version_num -revision_id $manifest_id]
@@ -200,6 +200,11 @@ db_multirow -extend { ver_num  ver_count manifest_id options tracking } cl_list 
             append options "<option value=$i>$i</options>"
 	}
     }
+    set com_url [dotlrn_community::get_community_url $com_id]
+    # get the lorsm package url for this community
+    set com_node_id [dotlrn_community::get_community_node_id $com_id]
+    set lorsm_url [site_node::get_children -node_id $com_node_id -element url -package_key lorsm]
+    set course_url [export_vars -base "${lorsm_url}delivery" {man_id}]
 }
 
 
@@ -221,7 +226,7 @@ template::list::create \
 	community  {
 	    label "[_ lors-central.community_name]"
 	    display_template {
-		@com_list.pretty_name@&nbsp;&nbsp;
+		<a hhref="@com_list.course_url@" alt="@com_list.pretty_name">@com_list.pretty_name@</a>&nbsp;&nbsp;
                 <a href="one-course-views?man_id=@com_list.manifest_id@&community_id=@com_list.com_id@">
                 [_ lors-central.views]
                 </a> 
@@ -260,7 +265,7 @@ template::list::create \
 	}
     } 
 
-db_multirow -extend { ver_num  ver_count manifest_id options tracking } com_list get_dotlrn_communities { } {
+db_multirow -extend { course_url ver_num  ver_count manifest_id options tracking } com_list get_dotlrn_communities { } {
     set manifest_id [lors_central::get_man_id -community_id $com_id -item_id $item_id]
     set ver_count [lors_central::count_versions -man_id $manifest_id]
     set ver_num [lors_central::get_version_num -revision_id $manifest_id]
@@ -274,6 +279,11 @@ db_multirow -extend { ver_num  ver_count manifest_id options tracking } com_list
             append options "<option value=$i>$i</options>"
 	}
     }
+    set com_url [dotlrn_community::get_community_url $com_id]
+    # get the lorsm package url for this community
+    set com_node_id [dotlrn_community::get_community_node_id $com_id]
+    set lorsm_url [site_node::get_children -node_id $com_node_id -element url -package_key lorsm]
+    set course_url [export_vars -base "${lorsm_url}delivery {man_id}]
 }
 
 
