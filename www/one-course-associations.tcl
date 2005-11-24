@@ -226,7 +226,7 @@ template::list::create \
 	community  {
 	    label "[_ lors-central.community_name]"
 	    display_template {
-		<a hhref="@com_list.course_url@" alt="@com_list.pretty_name">@com_list.pretty_name@</a>&nbsp;&nbsp;
+		<a href="@com_list.course_url@" alt="@com_list.pretty_name">@com_list.pretty_name@</a>&nbsp;&nbsp;
                 <a href="one-course-views?man_id=@com_list.manifest_id@&community_id=@com_list.com_id@">
                 [_ lors-central.views]
                 </a> 
@@ -283,7 +283,7 @@ db_multirow -extend { course_url ver_num  ver_count manifest_id options tracking
     # get the lorsm package url for this community
     set com_node_id [dotlrn_community::get_community_node_id $com_id]
     set lorsm_url [site_node::get_children -node_id $com_node_id -element url -package_key lorsm]
-    set course_url [export_vars -base "${lorsm_url}delivery {man_id}]
+    set course_url [export_vars -base "${lorsm_url}delivery" {man_id}]
 }
 
 
