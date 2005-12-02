@@ -23,6 +23,12 @@ ad_progress_bar_begin \
 set man_id [content::item::get_live_revision -item_id $item_id]
 
 foreach community_id $object_id {
+
+    # We first have to make sure that we install the lorsm portlet.
+    if {![db_string lorsm_applet_p "" -default 0]} {
+	dotlrn_community::add_applet_to_community $community_id "dotlrn_lorsm"
+    }
+
     # Here we associate the course with every community_id that was checked
     lors_central::add_relation -item_id $item_id -community_id $community_id -class_key $type
 
@@ -42,7 +48,7 @@ foreach community_id $object_id {
 
 if { [empty_string_p $return_url] } {
     set return_url [export_vars -base one-course-associations {man_id}]
-} else {
-    ad_progress_bar_end -url $return_url
 }
+
+ad_progress_bar_end -url $return_url
 
