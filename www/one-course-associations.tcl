@@ -286,5 +286,3 @@ db_multirow -extend { course_url ver_num  ver_count manifest_id options tracking
     set course_url [export_vars -base "${lorsm_url}delivery" {man_id}]
 }
 
-
-
