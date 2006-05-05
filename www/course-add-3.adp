@@ -7,7 +7,6 @@
 <p>
 
 <blockquote>
-<listtemplate name="d_info"></listtemplate>
 <p>
 <if @isSCORM@ eq 1>
   <font color="green">#lorsm.lt_The_uploaded_file_is_# <b>#lorsm.lt_SCORM_complaint_packa#</b></font>
