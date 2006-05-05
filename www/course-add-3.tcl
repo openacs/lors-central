@@ -251,7 +251,8 @@ db_transaction {
 	} else {
 	    set man_isscorm 0
 	}
-
+        # use isscorm proc!
+        set man_isscorm [lors::imscp::isSCORM -node $manifest]
         if { ![empty_string_p $metadata] } {
             set man_hasmetadata 1
         } else {
