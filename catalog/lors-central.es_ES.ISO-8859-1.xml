@@ -85,6 +85,7 @@
   <msg key="One_learning">Un objeto de aprendizaje</msg>
   <msg key="please_type">Por favor, introduzca una palabra clave</msg>
   <msg key="preview">Vista previa</msg>
+  <msg key="priv_all_memb">privilegios a todos los miembros</msg>
   <msg key="privilege_on">Permisos sobre</msg>
   <msg key="revoke">Revocar</msg>
   <msg key="revoke_per">Revocar permisos para estos usuarios</msg>
