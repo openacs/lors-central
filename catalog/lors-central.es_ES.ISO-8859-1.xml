@@ -50,6 +50,7 @@
   <msg key="edit_object">Editar %name%</msg>
   <msg key="email">Email</msg>
   <msg key="enabled">Activado</msg>
+  <msg key="everywhere">Por todas partes</msg>
   <msg key="filename">Nombre de archivo</msg>
   <msg key="grant">Autorizar</msg>
   <msg key="grant_per">Autorizar estos usuarios</msg>
@@ -68,6 +69,8 @@
   <msg key="lo_files">Archivos de objeto de aprendizaje</msg>
   <msg key="lors_admin">Administración de LORS Central</msg>
   <msg key="lors_central_package">Paquete LORS Central</msg>
+  <msg key="make">Hacer</msg>
+  <msg key="make_live">Hacer Activo para todo</msg>
   <msg key="make_this_live">Establecer como actual</msg>
   <msg key="man_id">Manifest ID</msg>
   <msg key="manage">Administrar</msg>
@@ -113,6 +116,7 @@
   <msg key="update_versions">Actualizar versiones</msg>
   <msg key="upload_a_new">Subir un fichero nuevo o...</msg>
   <msg key="Usage">Uso</msg>
+  <msg key="user_to_grant">usuarios que concedan los privilegios que coincide con esta búsqueda</msg>
   <msg key="username">Nombre de usuario</msg>
   <msg key="version">Versión</msg>
   <msg key="version_number">Ver. #</msg>
