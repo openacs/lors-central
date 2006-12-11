@@ -20,6 +20,7 @@
         <requires url="lors" version="0.6d4"/>
         <requires url="lorsm" version="0.6d2"/>
         <requires url="views" version="0.1d"/>
+        <requires url="acs-datetime" version="5.2.2"/>
 
         <callbacks>
             <callback type="after-install"  proc="lors_central::install::package_install"/>
