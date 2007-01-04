@@ -69,7 +69,7 @@ template::list::create \
 
 db_multirow -extend { mime_type prev_url } files get_file_info { } {
     set mime_type [db_string get_mime_type { }]
-    set prev_url [export_vars -base one-file {{file_id $fileid} res_id man_id}]
+    set prev_url [export_vars -base one-file {{file_id $fileid} res_id man_id ims_item_id}]
 }
 
 
