@@ -18,8 +18,8 @@
         <provides url="lors-central" version="0.1a5"/>
         <requires url="clipboard" version="0.1d"/>
         <requires url="lors" version="0.6d4"/>
-        <requires url="lorsm" version="0.6d2"/>
-        <requires url="dotlrn-lorsm" version="0.4d"/>
+        <requires url="lorsm" version="0.8d"/>
+        <requires url="dotlrn-lorsm" version="2.3.0d1"/>
         <requires url="views" version="0.1d"/>
         <requires url="acs-datetime" version="5.2.2"/>
 
