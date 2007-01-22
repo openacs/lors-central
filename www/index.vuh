@@ -36,6 +36,12 @@ set folder [db_string get_folder {
 set href [lors_central::get_href -ims_item_id $ims_item_id]
 
 set path_list [split $href "/"]
+
+if { [llength $path_list] == 1 } {
+    # There is no subfolder, so path_list is the url_name
+    set subfolder_name ""
+    set url_name $path_list
+} else {
     set char [string range $href 0 0]
     if { [string equal $char "/"] } {
         set subfolder_name [lindex $path_list 1]
@@ -44,6 +50,7 @@ set path_list [split $href "/"]
         set subfolder_name [lindex $path_list 0]
         set url_name [lindex $path_list 1]
     }
+}
 
 # Get the folder_id from the href and figure it out if we have to move another
 # folder down

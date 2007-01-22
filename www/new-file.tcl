@@ -47,7 +47,8 @@ ad_form -name file_upload -html {enctype multipart/form-data} \
 				 -res_id $res_id \
 				 -mime_type $mime_type \
 				 -man_id $man_id ]
-	 
+
+	 file delete $tmp_filename
 } -after_submit {
 
 ad_returnredirect [export_vars -base "one-resource" {{res_id $new_res_rev_id}}]

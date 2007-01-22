@@ -12,6 +12,19 @@
   </querytext>
 </fullquery>
 
+  <fullquery name="lorsm_applet_p">
+    <querytext>
+      select 1
+      from dotlrn_community_applets,
+      dotlrn_applets
+      where dotlrn_community_applets.community_id = :community_id
+      and dotlrn_community_applets.active_p = 't'
+      and dotlrn_community_applets.applet_id = dotlrn_applets.applet_id
+      and dotlrn_applets.active_p = 't'
+      and dotlrn_applets.applet_key = 'dotlrn_lorsm'
+    </querytext>
+  </fullquery>
+
 <fullquery name="get_ims_items">
   <querytext>
       select 

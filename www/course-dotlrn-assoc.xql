@@ -11,7 +11,10 @@
                    dc.pretty_name, 
                    dc.url
 	    from 
-                   dotlrn_class_instances_full dc, dotlrn_instructor_rels_full drf
+                   dotlrn_class_instances_full dc
+            left join
+                   dotlrn_instructor_rels_full drf
+            on     drf.community_id = dc.class_instance_id
             where           
                    dc.class_instance_id not in 
                    (
@@ -43,7 +46,10 @@
                    dc.pretty_name, 
                    dc.url
 	    from 
-                   dotlrn_class_instances_full dc, dotlrn_instructor_rels_full drf
+                   dotlrn_class_instances_full dc
+            left join
+                   dotlrn_instructor_rels_full drf
+            on     drf.community_id = dc.class_instance_id
             where           
                    dc.class_instance_id in 
                    (
@@ -72,7 +78,9 @@
                    dc.pretty_name, 
                    dc.url
 	    from 
-                   dotlrn_communities_full dc, dotlrn_member_rels_full dm
+                   dotlrn_communities_full dc
+            left join dotlrn_member_rels_full dm
+            on dm.community_id = dc.community_id
             where           
                    dc.community_id not in 
                    (
@@ -102,8 +110,10 @@
                    dc.pretty_name, 
                    dc.url
 	    from 
-                   dotlrn_communities_full dc, dotlrn_member_rels_full dm
-            where           
+                   dotlrn_communities_full dc
+            left join dotlrn_member_rels_full dm
+            on dm.community_id = dc.community_id
+            where                   
                    dc.community_id in 
                    (
                    select
