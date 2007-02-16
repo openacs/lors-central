@@ -36,7 +36,7 @@ if { ![empty_string_p $community_id] } {
 # Permissions
 # dotlrn::require_user_admin_community -user_id [ad_conn user_id] -community_id $community_id
 
-set title [list "[_ lorsm.Student_Tracking]"]
+set title "[_ lorsm.Student_Tracking]"
 set context [list "[_ lorsm.Tracking_1]"]
 
 if {![exists_and_not_null group]} {
