@@ -33,7 +33,7 @@ set user_id [ad_conn user_id]
 # Checking privilege over lors-central
 lors_central::check_permissions
 
-
+set context [list "[_ lorsm.Uploading_course]"]
 # Display progress bar
 ad_progress_bar_begin \
     -title "[_ lorsm.Uploading_course]" \
