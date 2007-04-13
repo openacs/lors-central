@@ -44,6 +44,9 @@ if { [empty_string_p $name] } {
     set name [db_string get_name { }]
 }
 
+set return_url "[ad_conn url]"
+set edit_name_url [export_vars -base edit-item-name {{ims_item_id $last_version} name return_url man_id}]
+
 if { [string equal $file_revision 0] } {
     # The items is probably an URL so we are going to get it
     set item_file_revision [lors_central::get_item_url -ims_item_id $ims_item_id -man_id $man_id]

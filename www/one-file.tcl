@@ -44,6 +44,9 @@ template::list::create \
     -bulk_action_export_vars { } \
     -row_pretty_plural "[_ lors-central.item_files]" \
     -elements {
+	version_number {
+	    label "[_ lors-central.version_number]"
+	}
 	filename {
 	    label "[_ lors-central.filename]"
 	    display_template {
@@ -54,6 +57,9 @@ template::list::create \
  		    @files.filename@
 		</else>
 	    }
+	}
+	version_notes {
+	    label "Notes"
 	}
 	preview {
 	    display_template {
@@ -67,9 +73,13 @@ template::list::create \
 	}
     }
 
-db_multirow -extend { mime_type prev_url } files get_file_info { } {
+db_multirow -extend { mime_type prev_url version_notes version_number} files get_file_info { } {
+    set version_number [lors_central::get_revision_count -revision_id ]
     set mime_type [db_string get_mime_type { }]
     set prev_url [export_vars -base one-file {{file_id $fileid} res_id man_id ims_item_id}]
+    array set fs_object_info [lors_central::get_object_info -file_id $fileid]
+    set version_notes $fs_object_info(version_notes)
+    array unset fs_object_info
 }
 
 

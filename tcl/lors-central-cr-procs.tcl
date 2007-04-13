@@ -35,7 +35,7 @@ ad_proc -public lors_central::cr::add_files {
 
         # insert file into the CR
         db_transaction {
-	    set description "uploaded using LORs"
+	    set description "uploaded using LORS-CENTRAL"
 
 	    # add file
 	    set file_id [content::item::new -name $title -parent_id $parent_id -creation_user $user_id \

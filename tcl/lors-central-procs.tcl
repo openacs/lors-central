@@ -803,13 +803,14 @@ ad_proc -public lors_central::add_file_revision {
     -item_id
     -man_id
     {-user_id ""}
+    {-description ""}
 } {
-
+    
 } {
-
+    
     set new_file_id [content::revision::new -item_id $item_id -title $title -creation_user $user_id \
-			 -mime_type $mime_type -is_live "f"]
-
+			 -mime_type $mime_type -is_live "f" -description $description]
+    
     # Now we store the content in the CR
     if {[exists_and_not_null tmp_filename]} {
 	set cr_file [cr_create_content_file $item_id $new_file_id $tmp_filename]
