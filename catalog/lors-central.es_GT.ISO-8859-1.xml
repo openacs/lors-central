@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="lors-central" package_version="0.1a1" locale="es_GT" charset="ISO-8859-1">
+<message_catalog package_key="lors-central" locale="es_GT" charset="ISO-8859-1">
 
   <msg key="action_not">Accion no permitida</msg>
   <msg key="add">Agregar Hijo</msg>
   <msg key="add_an_existent">Agregar un objeto de aprendizaje existente</msg>
   <msg key="add_file">Agregar Archivo</msg>
   <msg key="add_from_clip">Agregar desde el Sujetapapeles:</msg>
-  <msg key="add_object">Agregar Objeto</msg>  
-  <msg key="add_this">Agregar este Objeto</msg>          
+  <msg key="add_object">Agregar Objeto</msg>
+  <msg key="add_this">Agregar este Objeto</msg>
   <msg key="Add_this_learn">Agregar este objeto de aprendizaje al sujetapapeles</msg>
   <msg key="Add_to_clip">Agregar al sujetapapeles</msg>
   <msg key="add_to_course">Agregar a este curso</msg>
   <msg key="add_to_resource">Agregar a este recurso</msg>
-  <msg key="admin">Administrar</msg>  
+  <msg key="admin">Administrar</msg>
   <msg key="All_views">Todas las vistas</msg>
   <msg key="All_views_of">Todas las vistas de este objeto</msg>
   <msg key="and_in_the">y en las siguientes comunidades:</msg>
@@ -25,13 +25,13 @@
   <msg key="associated">Already Asociado</msg>
   <msg key="author">Autor:</msg>
   <msg key="choose_the_file">Escoja el archivo que desea subir</msg>
-  <msg key="class_memberships">Membresias con Clases</msg>  
+  <msg key="class_memberships">Membresias con Clases</msg>
   <msg key="class_name">Nombre de la Clase</msg>
   <msg key="Classes_using">Clases que utilizan este curso</msg>
   <msg key="click_for_prev">Click para previsualizar</msg>
   <msg key="clip_this_res">Sujetar este Recurso</msg>
-  <msg key="com_memberships">Membresias con Comunidades</msg> 
-  <msg key="community_name">Nombre de la comunidad</msg> 
+  <msg key="com_memberships">Membresias con Comunidades</msg>
+  <msg key="community_name">Nombre de la comunidad</msg>
   <msg key="course_name">Nombre del Curso</msg>
   <msg key="course_versions">Versiones del Curso</msg>
   <msg key="courses">Cursos</msg>
@@ -55,17 +55,17 @@
   <msg key="grant_permissions">Otorgar permisos</msg>
   <msg key="grant_rev">Otorgar / Quitar</msg>
   <msg key="help_text">Utilizar el boton de &quot;Browse...&quot; para localizar el archivo, luego presionar&quot;Open&quot;</msg>
-  <msg key="here">Aqui</msg>                                  
+  <msg key="here">Aqui</msg>
   <msg key="hide">Ocultar</msg>
   <msg key="item_files">Archivos del Objeto</msg>
   <msg key="item_name">Nombre del Item:</msg>
   <msg key="item_title">Titulo del Item</msg>
   <msg key="label_title">Marcar/Desmarcar todas las filas</msg>
   <msg key="last_modified">Ultima Modificacion</msg>
-  <msg key="live">Actual</msg> 
+  <msg key="live">Actual</msg>
   <msg key="live_classes">Clases donde es el actual?</msg>
-  <msg key="lo_files">Archivos del Objeto de Aprendizaje</msg>   
-  <msg key="lors_admin">Administracion de Lors Central</msg> 
+  <msg key="lo_files">Archivos del Objeto de Aprendizaje</msg>
+  <msg key="lors_admin">Administracion de Lors Central</msg>
   <msg key="make">Hacer</msg>
   <msg key="make_live">Cambiar a actual en todas las clases</msg>
   <msg key="make_this_live">Poner actual en esta clase</msg>
@@ -94,7 +94,7 @@
   <msg key="search_users_to">Buscar usarios a Otorgar/Quitar privilegios</msg>
   <msg key="set_to">Establecer a</msg>
   <msg key="shared">Compartido?</msg>
-  <msg key="shared_items">Objetos Compartidos en el repositorio</msg>>
+  <msg key="shared_items">Objetos Compartidos en el repositorio</msg>
   <msg key="subject_name">Nombre de la Materia</msg>
   <msg key="term_name">Nombre del Periodo</msg>
   <msg key="there_are_no">No existen artivulos en este Sujetapapeles.</msg>

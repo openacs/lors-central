@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="lors-central" package_version="0.1a5" locale="pt_BR" charset="ISO-8859-1">
+<message_catalog package_key="lors-central" locale="pt_BR" charset="ISO-8859-1">
 
   <msg key="action_not">Ação Não Permitida</msg>
   <msg key="add">Adicionar Criança</msg>
