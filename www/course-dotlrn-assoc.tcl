@@ -38,9 +38,8 @@ if { ![acs_user::site_wide_admin_p] } {
 
 ##################################### TO ASSOCIATE ##########################################################
 
-db_multirow -extend { rel type } classes_list get_dotlrn_classes { } {
+db_multirow -extend { rel } classes_list get_dotlrn_classes { } {
     set rel [lors_central::relation_between -item_id $item_id -community_id $com_id]
-    set type dotlrn_class_instance
 }
 
 template::list::create \
@@ -54,7 +53,6 @@ template::list::create \
     -bulk_action_method post \
     -bulk_action_export_vars {
 	item_id
-        type
     }\
     -row_pretty_plural "[_ lors-central.dotlrn_classes]" \
     -elements {
@@ -169,9 +167,8 @@ template::list::create \
 ##################################### COMMUNITIES ###########################################################
 ##################################### TO ASSOCIATE ##########################################################
 
-db_multirow -extend { rel type } coms_list get_dotlrn_coms { } {
+db_multirow -extend { rel } coms_list get_dotlrn_coms { } {
     set rel [lors_central::relation_between -item_id $item_id -community_id $com_id]
-    set type dotlrn_club
 }
 
 template::list::create \
@@ -185,7 +182,6 @@ template::list::create \
     -bulk_action_method post \
     -bulk_action_export_vars {
 	item_id
-        type
     }\
     -row_pretty_plural "[_ lors-central.dotlrn_communities]" \
     -elements {
@@ -217,7 +213,7 @@ template::list::create \
 
 ############################## TO DROP ASSOCIATION ######################################
 
-db_multirow -extend { rel type } coms_list_drop get_dotlrn_coms_drop { } {
+db_multirow -extend { rel } coms_list_drop get_dotlrn_coms_drop { } {
     set rel [lors_central::relation_between -item_id $item_id -community_id $com_id]
 }
 
@@ -232,7 +228,6 @@ template::list::create \
     -bulk_action_method post \
     -bulk_action_export_vars {
 	item_id
-        type
     }\
     -row_pretty_plural "[_ lors-central.dotlrn_classes]" \
     -elements {

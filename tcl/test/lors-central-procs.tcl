@@ -53,13 +53,8 @@ aa_register_case lors_central_add_relation_check {
                 where revision_id = :test_man_id
             }]
 
-            set test_class_key [db_string get_class_key {
-                select community_type
-                from dotlrn_communities_all 
-                where community_id = :test_com_id
-            }]
 	    # Testing where there is no association
-            lors_central::add_relation -item_id $test_item_id -community_id $test_com_id -class_key $test_class_key
+            lors_central::add_relation -item_id $test_item_id -community_id $test_com_id
             set row_count [db_string get_row_count { 
 		select count(man_id)
 		from ims_cp_manifest_class
@@ -73,7 +68,7 @@ aa_register_case lors_central_add_relation_check {
 	    aa_true "Creates only one row" [string equal "1" "$success_p"]
 	    
 	    # Testing where there is already one association
-            lors_central::add_relation -item_id $test_item_id -community_id $test_com_id_2 -class_key $test_class_key
+            lors_central::add_relation -item_id $test_item_id -community_id $test_com_id_2
             set row_count [db_string get_row_count { 
 		select count(man_id)
 		from ims_cp_manifest_class

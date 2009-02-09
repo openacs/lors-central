@@ -4,7 +4,7 @@ create table ims_cp_items_map (
     org_id         int
                    constraint ims_cp_items_map_org_id_fk references ims_cp_organizations (org_id),
     community_id   int
-                   constraint ims_cp_items_map_com_id_fk references dotlrn_communities_all(community_id),
+                   constraint ims_cp_items_map_com_id_fk references groups(group_id),
     hide_p         boolean default 'f',
     ims_item_id    int
                    constraint ims_cp_items_map_ims_item_id_fk references ims_cp_items (ims_item_id),

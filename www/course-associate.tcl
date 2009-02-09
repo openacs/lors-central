@@ -5,7 +5,6 @@ ad_page_contract {
     @author          Viaro Networks www.viaro.net
 } {
     item_id:notnull
-    type:notnull
     object_id:multiple
     { return_url "" }
 }
@@ -30,7 +29,7 @@ foreach community_id $object_id {
     }
 
     # Here we associate the course with every community_id that was checked
-    lors_central::add_relation -item_id $item_id -community_id $community_id -class_key $type
+    lors_central::add_relation -item_id $item_id -community_id $community_id
 
     # Now we have to make insert in the ims_cp_items_map in orther to tell which version 
     # of which course will be shown to an especific dotlrn class.

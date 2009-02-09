@@ -6,7 +6,6 @@
            select  
                   icmc.community_id as com_id, 
                   icmc.lorsm_instance_id as lors_ins_id,
-                  icmc.class_key as cl_key,
                   icmc.isenabled as ie,
                   icmc.istrackable as it
            from 
@@ -24,7 +23,6 @@
             set 
                   man_id = :man_id,
                   lorsm_instance_id = :lors_ins_id, 
-                  class_key = :cl_key, 
                   isenabled = :ie, 
                   istrackable = :it
             where
@@ -37,7 +35,6 @@
             delete from ims_cp_manifest_class 
             where
                   community_id is null and
-                  class_key is null and
 	          man_id = :man_id
         </querytext>
     </fullquery>

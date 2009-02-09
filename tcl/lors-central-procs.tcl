@@ -355,13 +355,11 @@ ad_proc -private lors_central::relation_between {
 ad_proc -private lors_central::add_relation { 
     -item_id:required
     -community_id:required
-    -class_key:required
 } {
     Add a new row to the ims_cp_manifest_class to associate one community_id (class or community)
     with a man_id
     @item_id@        Item id that has man_id as revisions
     @community_id@   The community_id of the dotlrn class or community
-    @class_key@      The name of the dotlrn class or community
 } {
     set lorsm_instance_id [lors_central::get_package_instance_id -community_id $community_id]
     set man_id [content::item::get_live_revision -item_id $item_id]
@@ -566,7 +564,6 @@ ad_proc -private lors_central::change_version_all_courses {
 	select
 	icmc.community_id as com_id,
 	icmc.lorsm_instance_id as lors_ins_id,
-	icmc.class_key as cl_key,
 	icmc.isenabled as ie,
 	icmc.istrackable as it
 	from
@@ -583,7 +580,6 @@ ad_proc -private lors_central::change_version_all_courses {
 	    set
 	    man_id = :man_id,
 	    lorsm_instance_id = :lors_ins_id,
-	    class_key = :cl_key,
 	    isenabled = :ie,
 	    istrackable = :it
 	    where

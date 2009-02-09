@@ -509,8 +509,7 @@
              ims_cp_manifest_class 
       set 
              lorsm_instance_id = :lorsm_instance_id,
-             community_id = :community_id, 
-             class_key = :class_key
+             community_id = :community_id 
       where 
              man_id = :man_id
   </querytext>
@@ -519,9 +518,9 @@
 <fullquery name="lors_central::add_relation.insert_info">
   <querytext>
       insert into ims_cp_manifest_class 
-      (man_id, lorsm_instance_id, community_id, class_key, isenabled, istrackable)
+      (man_id, lorsm_instance_id, community_id, isenabled, istrackable)
       values
-      (:man_id, :lorsm_instance_id, :community_id, :class_key, 't', 'f')
+      (:man_id, :lorsm_instance_id, :community_id, 't', 'f')
   </querytext>
 </fullquery>
 
@@ -660,7 +659,6 @@
        select
                icmc.community_id as com_id,
                icmc.lorsm_instance_id as lors_ins_id,
-               icmc.class_key as cl_key,
                icmc.isenabled as ie,
                icmc.istrackable as it
        from
@@ -678,7 +676,6 @@
          set
                man_id = :man_id,
                lorsm_instance_id = :lors_ins_id,
-               class_key = :cl_key,
                isenabled = :ie,
                istrackable = :it
          where
