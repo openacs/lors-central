@@ -667,7 +667,7 @@ aa_register_case lors_central_item_editable_p {
 aa_register_case lors_central_package_install {
     Check if the package creates the right folders and types
     ** Requires
-    1. lors-central package alreay installed
+    1. lors-central package already installed
 } {
     aa_run_with_teardown \
        -rollback \
