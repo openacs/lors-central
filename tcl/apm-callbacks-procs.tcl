@@ -1,7 +1,7 @@
 ad_library {
 
     Procedures to do a new impl and aliases in the acs-sc.
-    @autor Miguel Marin (miguelmarin@viaro.net)
+    @author Miguel Marin (miguelmarin@viaro.net)
 }
 
 namespace eval lors_central::apm_callback {}
