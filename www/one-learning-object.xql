@@ -91,7 +91,7 @@
         <querytext>
         select
                 f.file_id
-        frome
+        from
                 ims_cp_files f, ims_cp_resources r
         where
                 r.res_id = :res_id and
