@@ -15,7 +15,7 @@ set user_id [ad_conn user_id]
 lors_central::check_permissions
 
 # Get the item_id that the manifest_id has associated
-if { ![info exist item_id] } {
+if { ![info exists item_id] } {
     set item_id [lors_central::get_item_id -revision_id $man_id]
 }
 

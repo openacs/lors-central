@@ -19,7 +19,7 @@ set context [list "[_ lorsm.Manage_Courses]"]
 
 
 # To search courses
-if { [info exist keyword] } {
+if { [info exists keyword] } {
     if { [string equal $keyword [_ lors-central.please_type]] } {
         set extra_query ""
     } else {

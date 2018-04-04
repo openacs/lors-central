@@ -15,7 +15,7 @@ set user_id [ad_conn user_id]
 lors_central::check_permissions -check_inst t
 
 
-if { [info exist class_com_id] } {
+if { [info exists class_com_id] } {
     # Grant admin privilige to all users in this class or community
     db_foreach get_all_members { } {
 	if { ![lors_central::owner -user_id $user_id -object_id $man_id] } {

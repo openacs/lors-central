@@ -1,6 +1,6 @@
 ad_page_contract {
-    Change the live revision to revision_id   
-                      
+    Change the live revision to revision_id
+
     @author          Miguel Marin (miguelmarin@viaro.net)
     @author          Viaro Networks www.viaro.net
     @creation_date   28-03-2005
@@ -15,7 +15,7 @@ ad_page_contract {
 # Checking privilege over lors-central
 lors_central::check_permissions
 
-if { ![info exist name] } {
+if { ![info exists name] } {
     set name [db_string get_name { select item_title from ims_cp_items where ims_item_id = :ims_item_id }]
 } 
 

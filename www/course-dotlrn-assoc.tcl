@@ -14,7 +14,7 @@ lors_central::check_permissions
 set title [_ lors-central.associate_to]
 
 # Get the item_id that the manifest_id has associated
-if { ![info exist item_id] } {
+if { ![info exists item_id] } {
     set item_id [lors_central::get_item_id -revision_id $man_id]
     set context [list [list "one-course-associations?man_id=$man_id" [_ lors-central.one_course_assoc]] \
                       [_ lors-central.associate_to]]

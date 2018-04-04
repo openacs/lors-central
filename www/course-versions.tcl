@@ -13,7 +13,7 @@ set user_id [ad_conn user_id]
 lors_central::check_permissions
 
 
-if { ![info exist item_id ] } {
+if { ![info exists item_id ] } {
     set item_id [lors_central::get_item_id -revision_id $man_id]
     set context [list [list "one-course?man_id=$man_id" \
                       [_ lors-central.one_course]] [_ lorsm.lt_one_course_versions]]

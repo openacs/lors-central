@@ -14,7 +14,7 @@ set context [list [list "." [_ lors-central.lors_admin]]  $page_title]
 
 
 # To search courses
-if { [info exist keyword] } {
+if { [info exists keyword] } {
     if { [string equal $keyword [_ lors-central.please_type]] } {
         set extra_query ""
     } else {

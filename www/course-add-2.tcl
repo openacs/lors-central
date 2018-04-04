@@ -30,7 +30,7 @@ ad_page_contract {
 lors_central::check_permissions
 
 # To support versions
-if { ![info exist man_id] } {
+if { ![info exists man_id] } {
     set man_id ""
 }
 

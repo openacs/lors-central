@@ -41,7 +41,7 @@ ad_proc -private lors_central::check_permissions {
     @check_inst  Set it to "t" if you want to check if the user_id that watch's this page is an dotlrn
                  instructor.
 } {
-    if { ![info exist user_id] } {
+    if { ![info exists user_id] } {
 	set user_id [ad_conn user_id]
     }
     set package_id [ad_conn package_id]
@@ -928,7 +928,7 @@ ad_proc -public lors_central::get_items_indent {
             set item_id [lindex $item 0]
             set indent [expr [lindex $item 1] + 1]
             db_foreach get_items { } {
-                if { ![info exist items_array($ims_item_id)] } {
+                if { ![info exists items_array($ims_item_id)] } {
                     lappend items_list [list $ims_item_id $indent]
                     set items_array($ims_item_id) $indent
                     incr count

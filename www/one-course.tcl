@@ -5,13 +5,13 @@ ad_page_contract {
    man_id:integer,optional
 }
 
-if { ![info exist item_id] && ![info exist man_id] } {
+if { ![info exists item_id] && ![info exists man_id] } {
    ad_return_complaint 1 "You must pass either item_id or man_id"
 } else {
-    if { ![info exist man_id] } {
+    if { ![info exists man_id] } {
        set man_id [content::item::get_live_revision -item_id $item_id]
     }
-    if { ![info exist item_id] } {
+    if { ![info exists item_id] } {
        set item_id [lors_central::get_item_id -revision_id $man_id]
     }
 }
