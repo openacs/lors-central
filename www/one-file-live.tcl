@@ -1,5 +1,5 @@
 ad_page_contract {
-    Change the live version to the recieved file_id
+    Change the live version to the received file_id
     
     @author Miguel Marin (miguelmarin@viaro.net)
     @author Viaro Networks www.viaro.net

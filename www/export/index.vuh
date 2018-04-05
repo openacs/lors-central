@@ -1,7 +1,7 @@
 # packages/lors-central/www/export/index.vuh
 
 ad_page_contract {
-    Just to get the propper file name to return to the user
+    Just to get the proper file name to return to the user
     from the server
 	
     @author Miguel Marin (miguelmarin@viaro.net)

@@ -701,7 +701,7 @@ ad_proc -public lors_central::add_file {
         set new_file_item_id [content::item::new -name $title -creation_user $user_id -parent_id $res_folder_id]
 	
 
-	# FIXME allow lors admins to set live immediatly
+	# FIXME allow lors admins to set live immediately
 	set new_file_revision_id [ lors_central::add_file_revision \
 				       -res_id $new_res_id \
 				       -name $file_upload \
