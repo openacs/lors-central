@@ -8,7 +8,7 @@ namespace eval lors_central::apm_callback {}
 
 ad_proc -private lors_central::apm_callback::package_install {
 } {
-    Does the integration whith the notifications package.
+    Does the integration with the notifications package.
 } {
     db_transaction {
 
