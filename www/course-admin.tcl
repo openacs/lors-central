@@ -31,7 +31,7 @@ set user_id [ad_conn user_id]
 # Permissions
 # dotlrn::require_user_admin_community -user_id $user_id -community_id $community_id
 
-set actions [list]
+set actions {}
 
 lappend actions  "[_ lorsm.Add_Course]" [export_vars -base "course-add"] "[_ lorsm.lt_Add_a_IMSSCORM_Compli]"
 lappend actions  "[_ lorsm.lt_Search_Learning_Objec]" [export_vars -base "/search"] "[_ lorsm.lt_Search_for_Learninng_]"

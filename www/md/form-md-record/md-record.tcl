@@ -1,4 +1,4 @@
-set actions [list]
+set actions {}
 
 lappend actions  "[_ lorsm.General_MD]" [export_vars -base ../generalmd {ims_md_id}] "[_ lorsm.lt_View_General_Metadata]"
 lappend actions  "[_ lorsm.Lifecycle_MD]" [export_vars -base ../lifecyclemd {ims_md_id}] "[_ lorsm.lt_View_Lifecycle_Metada]"

@@ -55,7 +55,7 @@ set admin_p [dotlrn::user_can_admin_community_p  \
 # Permissions
 # dotlrn::require_user_admin_community -user_id $user_id -community_id $community_id
 
-set actions [list]
+set actions {}
 
 if { [lors_central::check_inst -user_id $user_id] } {
     lappend actions  "[_ lorsm.Add_Course]" [export_vars -base "course-add"] "[_ lorsm.lt_Add_a_IMSSCORM_Compli]"
