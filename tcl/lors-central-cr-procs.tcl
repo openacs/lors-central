@@ -26,7 +26,7 @@ ad_proc -public lors_central::cr::add_files {
     # Get the ip
     set creation_ip [ad_conn peeraddr]
 
-    set retlist {}
+    set retlist [list]
     foreach fle $files {
 
 	regexp {[^//\\]+$} $fle filename

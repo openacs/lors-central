@@ -429,7 +429,7 @@ ad_proc -private lors_central::get_version_num {
     returns    position in list + 1
 } {
     set item_id [lors_central::get_item_id -revision_id $revision_id]
-    set versions {}
+    set versions [list]
     set versions [db_list_of_lists get_all_versions { }]
     return [expr [lsearch -exact $versions $revision_id] + 1]
 }
@@ -444,7 +444,7 @@ ad_proc -private lors_central::get_rev_id_from_version_num {
     @ver_nun@   Version Number
     returns     revision_id
 } {
-    set versions {}
+    set versions [list]
     set versions [db_list_of_lists get_all_versions { }]
     return [lindex $versions [expr $ver_num - 1]]
 }
