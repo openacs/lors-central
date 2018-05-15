@@ -16,7 +16,7 @@ lors_central::check_permissions -check_inst t
 
 
 if { [info exists class_com_id] } {
-    # Grant admin privilige to all users in this class or community
+    # Grant admin privilege to all users in this class or community
     db_foreach get_all_members { } {
 	    permission::grant -party_id $user_id -object_id $man_id -privilege "admin"
     }

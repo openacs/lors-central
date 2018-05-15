@@ -580,7 +580,7 @@ aa_register_case lors_central_check_item_name_check {
 }
 
 aa_register_case lors_central_check_privilege {
-    Checks lors_central::check_privilige proc
+    Checks lors_central::check_privilege proc
     ** Requirements:
     1. One Course
 } {
