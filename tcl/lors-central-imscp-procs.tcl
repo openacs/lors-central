@@ -66,7 +66,7 @@ ad_proc -public lors_central::imscp::manifest_add {
 
 
     #########################################################################################
-    # Since now we dont use acs-objects for the manifest, then a new cr_item and revision
+    # Since now we don't use acs-objects for the manifest, then a new cr_item and revision
     # needs to be done to store the manifest. The cr_item and cr_revision are created here
     # in orther to use the CR API.
 
@@ -274,7 +274,7 @@ ad_proc -public lors_central::imscp::item_add {
     }
 
     #--------------------------------------------------------------------------------------#
-    # Since now we dont use acs-objects for the item, then a new cr_item and revision
+    # Since now we don't use acs-objects for the item, then a new cr_item and revision
     # needs to be done to store it. The cr_item and cr_revision are created here
     # in orther to use the CR API. The item name probably has to change
 
@@ -405,7 +405,7 @@ ad_proc -public lors_central::imscp::resource_add {
     }
 
     #--------------------------------------------------------------------------------------#
-    # Since now we dont use acs-objects for the resource, then a new cr_item and revision
+    # Since now we don't use acs-objects for the resource, then a new cr_item and revision
     # needs to be done to store it. The cr_item and cr_revision are created here
     # in orther to use the CR API. The item name probably has to change
 
@@ -484,7 +484,7 @@ ad_proc -public lors_central::imscp::organization_add {
     }
 
     #--------------------------------------------------------------------------------------#
-    # Since now we dont use acs-objects for the organizations, then a new cr_item and revision
+    # Since now we don't use acs-objects for the organizations, then a new cr_item and revision
     # needs to be done to store it. The cr_item and cr_revision are created here
     # in orther to use the CR API. The item name probably has to change
 
