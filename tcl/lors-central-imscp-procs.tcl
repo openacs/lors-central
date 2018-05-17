@@ -197,7 +197,7 @@ ad_proc -public lors_central::imscp::addItems {
         if { [llength $item] > 13} {
             set subitem [lors_central::imscp::addItems -itm_folder_id $itm_folder_id \
                              -org_id $p_org_id [lindex $item 13] $item_id $tmp_dir]
-            set retlist [concat $retlist $subitem]
+            lappend retlist {*}$subitem
         }
     }
     return $retlist
