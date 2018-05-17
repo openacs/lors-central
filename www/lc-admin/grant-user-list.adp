@@ -33,7 +33,7 @@
         <td>@classes.term_name@</td>
         <td>@classes.term_year@</td>
 	<td>&nbsp;&nbsp;&nbsp;</td>
-	<if @classes.associated_p@>
+	<if @classes.associated_p;literal@ true>
 	   <td><i>@classes.grant_url;noquote@ / @classes.revoke_url;noquote@ #lors-central.priv_all_memb#</i></td>
         </if>
      </tr>
@@ -50,7 +50,7 @@
     <tr>
        <td><li><a href="@clubs.url@">@clubs.pretty_name@</a></td>
        <td>&nbsp;&nbsp;&nbsp;</td>
-       <if @clubs.associated_p@>
+       <if @clubs.associated_p;literal@ true>
            <td><i> @clubs.grant_url;noquote@ / @clubs.revoke_url;noquote@ #lors-central.priv_all_memb#</i></td>
        </if>
     </tr>

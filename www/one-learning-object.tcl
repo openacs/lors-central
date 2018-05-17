@@ -178,7 +178,7 @@ template::list::create \
 	current  {
 	    label "[_ lors-central.current]"
 	    display_template {
-                <if @cl_list.hide_p@>
+                <if @cl_list.hide_p;literal@ true>
                      0
                 </if>
                 <else>
