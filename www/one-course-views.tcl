@@ -84,7 +84,7 @@ template::list::create \
             label "[_ lors-central.views_in]"
             display_template {
 		<center>
-		<a href="tracking/?man_id=@course_versions.man_id@&commmunity_id=$community_id">
+		<a href="tracking/?man_id=@course_versions.man_id@&community_id=$community_id">
 		[_ lors-central.views]
 		</a>
                 </center>
