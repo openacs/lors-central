@@ -60,12 +60,12 @@ aa_register_case lors_central_add_relation_check {
 		from ims_cp_manifest_class
 		where community_id = :test_com_id and man_id = :test_man_id
 	    }]
-            if { [string equal $row_count "1"] } {
+            if { $row_count == 1 } {
 		set success_p 1
 	    } else {
 		set success_p 0
 	    }           
-	    aa_true "Creates only one row" [string equal "1" "$success_p"]
+	    aa_equals "Creates only one row" 1 $success_p
 	    
 	    # Testing where there is already one association
             lors_central::add_relation -item_id $test_item_id -community_id $test_com_id_2
@@ -74,7 +74,7 @@ aa_register_case lors_central_add_relation_check {
 		from ims_cp_manifest_class
 		where man_id = :test_man_id
 	    }]
-            if { [string equal $row_count "2"] } {
+            if { $row_count == 2 } {
 		set success_p 1
 	    } else {
 		set success_p 0
@@ -105,7 +105,7 @@ aa_register_case lors_central_get_version_num {
 		select max(revision_id) from cr_revisions where item_id = :test_item_id
 	    }]
             set version_number_1 [lors_central::get_version_num -revision_id $test_revision_id]
-            aa_equals "Min revision_id return version number equal to 1" $version_number_1 "1"
+            aa_equals "Min revision_id return version number equal to 1" $version_number_1 1
 
             set version_number_2 [lors_central::get_version_num -revision_id $test_revision_id_2]
             aa_equals "Max revision_id return version number equal to revisions count" $version_number_2 $test_count
@@ -195,7 +195,7 @@ aa_register_case lors_central_change_one_lo_version_check {
 	    }]
 	    aa_equals "Change to last version_number ($test_item_id_2) on different community" $check_item $test_item_id_2
 
-	    lors_central::change_one_lo_version -ver_num "0" -man_id $test_man_id \
+	    lors_central::change_one_lo_version -ver_num 0 -man_id $test_man_id \
 		-community_id $test_com_id_2 -ims_item_id $test_item_id_2
 
 	    set check_item [db_string get_hide_p {
@@ -368,7 +368,7 @@ aa_register_case lors_central_drop_relation_check {
 		where community_id = :com_id
 		and man_id in ( select revision_id from cr_revisions where item_id = :item_id )
 	    }]
-	    aa_equals "Deleting everything from ims_cp_manifest_class" $test "0"
+	    aa_equals "Deleting everything from ims_cp_manifest_class" $test 0
 	}
 }
 
@@ -530,7 +530,7 @@ aa_register_case lors_central_set_sort_order_check {
 		select sort_order 
 		from ims_cp_items 
 		where ims_item_id = :ims_item_id} -default 0]
-	    aa_equals "Sort order proc set the right sort" $proc_sort "2"
+	    aa_equals "Sort order proc set the right sort" $proc_sort 2
 
 	    set proc_sort [lors_central::set_sort_order -ims_item_id $ims_item_id]
 	    set sort_p [db_string get_sort { 
@@ -562,7 +562,7 @@ aa_register_case lors_central_check_item_name_check {
 		where item_id = :item_id
 	    }]
 	    set proc_name [lors_central::check_item_name -parent_id $parent_id -name $name]
-	    if { [string equal $name $proc_name] } {
+	    if { $name eq $proc_name } {
 		set success_p 0
 	    } else {
 		set success_p 1
@@ -570,7 +570,7 @@ aa_register_case lors_central_check_item_name_check {
 	    aa_true "Name exist, gives a new name" $success_p
 	    set name ${name}h
 	    set proc_name [lors_central::check_item_name -parent_id $parent_id -name $name]
-	    if { [string equal $name $proc_name] } {
+	    if { $name eq $proc_name } {
 		set success_p 1
 	    } else {
 		set success_p 0
@@ -601,7 +601,7 @@ aa_register_case lors_central_check_privilege {
 	    set proc_result [lors_central::check_privilege -user_id $user_id -item_id $item_id]
 	    aa_true "Check privilege proc when user has privilege" $proc_result
 	    set proc_result [lors_central::check_privilege -user_id 0 -item_id $item_id]
-	    aa_true "Check privilege proc when user has no privilege" [string equal $proc_result 0]
+	    aa_equals "Check privilege proc when user has no privilege" $proc_result 0
 	}
 }
 
@@ -630,7 +630,7 @@ aa_register_case lors_central_item_editable_info {
 	    }]
 	    set item_id [lors_central::get_item_id -revision_id $rev_id]
 	    set proc_result [lors_central::item_editable_info -item_id $item_id]
-	    aa_true "Sending one non editable item" [string equal [lindex $proc_result 3] 0]
+	    aa_equals "Sending one non editable item" [lindex $proc_result 3] 0
 	}
 }
 
@@ -660,7 +660,7 @@ aa_register_case lors_central_item_editable_p {
 	    }]
 	    set item_id [lors_central::get_item_id -revision_id $rev_id]
 	    set proc_result [lors_central::item_editable_p -item_id $item_id]
-	    aa_true "Sending one non editable item" [string equal $proc_result 0]
+	    aa_equals "Sending one non editable item" $proc_result 0
 	}
 }
 
@@ -676,27 +676,27 @@ aa_register_case lors_central_package_install {
 		select 1 
 		from  cr_folders
 		where label = 'LORSM Root Folder'} -default 0]
-	    aa_true "Folders created"  $success_p
+	    aa_true "Folders created" $success_p
 	    set success_p [db_string check_folder { 
 		select 1 
 		from  cr_folders
 		where label = 'LORSM Manifest Folder'} -default 0]
-	    aa_true "Folders created"  $success_p
+	    aa_true "Folders created" $success_p
 	    set success_p [db_string check_folder { 
 		select 1 
 		from  cr_folders
 		where label = 'LORSM Organizations Folder'} -default 0]
-	    aa_true "Folders created"  $success_p
+	    aa_true "Folders created" $success_p
 	    set success_p [db_string check_folder { 
 		select 1 
 		from  cr_folders
 		where label = 'LORSM Items Folder'} -default 0]
-	    aa_true "Folders created"  $success_p
+	    aa_true "Folders created" $success_p
 	    set success_p [db_string check_folder { 
 		select 1 
 		from  cr_folders
 		where label = 'LORSM Resources Folder'} -default 0]
-	    aa_true "Folders created"  $success_p
+	    aa_true "Folders created" $success_p
 	}
 }
 
@@ -734,6 +734,6 @@ aa_register_case lors_central_imscp_manifest_add {
 
 	    set success_p [db_string get_check { select 1 from ims_cp_manifests where man_id = :new_man_id } -default 0]
 	
-	    aa_true "New man_id created"  $success_p
+	    aa_true "New man_id created" $success_p
 	}
 }
