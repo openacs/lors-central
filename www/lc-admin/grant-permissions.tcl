@@ -30,7 +30,7 @@ if { [info exists keyword] } {
    set extra_query ""
 }
 
-# If user is not site wide we just show the courses where he/she has admin privilege over
+# If user is not site-wide we just show the courses where he/she has admin privilege over
 if { ![acs_user::site_wide_admin_p] } {
     append extra_query " and p.object_id = acs.object_id and p.privilege = 'admin' and p.grantee_id = :user_id"
 }
