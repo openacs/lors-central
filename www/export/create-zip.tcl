@@ -141,7 +141,7 @@ close $fid
 
 
 # publish the object to the file system
-set in_path [ns_tmpnam]
+set in_path [ns_mktemp]
 exec mkdir $in_path
 
 set file [lors_central::export::publish_object_to_file_system -object_id $content_folder_id -path $in_path -user_id $user_id]
@@ -157,7 +157,7 @@ regsub -all { } $download_name {_} download_name
 # - - - - - - - - - - - - - - - - - - - - 
 # Create a temp dir to put the archive in
 # - - - - - - - - - - - - - - - - - - - - 
-set out_path [ns_tmpnam]
+set out_path [ns_mktemp]
 file mkdir $out_path
 set out_file [file join ${out_path} ${download_name}]
 

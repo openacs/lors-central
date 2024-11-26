@@ -48,7 +48,7 @@ ad_proc -private lors_central::export::publish_object_to_file_system {
     {-file_name ""}
 } {
     if {[empty_string_p $path]} {
-	set path [ns_tmpnam]
+	set path [ns_mktemp]
    }
     db_1row select_object_info {             
 	select fs_objects.*
@@ -79,7 +79,7 @@ ad_proc -public lors_central::export::publish_folder_to_file_system {
     publish the contents of a file storage folder to the file system
 } {
     if {[empty_string_p $path]} {
-	set path [ns_tmpnam]
+	set path [ns_mktemp]
     }
 
     if {[empty_string_p $folder_name]} {
@@ -110,7 +110,7 @@ ad_proc -public lors_central::export::publish_url_to_file_system {
     (which at least KDE also knows how to handle)
 } {
     if {[empty_string_p $path]} {
-	set path [ns_tmpnam]
+	set path [ns_mktemp]
 	file mkdir $path
     }
 
@@ -138,7 +138,7 @@ ad_proc -public lors_central::export::publish_versioned_object_to_file_system {
     publish an object to the file system
 } {
     if {[empty_string_p $path]} {
-	set path [ns_tmpnam]
+	set path [ns_mktemp]
 	file mkdir $path
     }
 
